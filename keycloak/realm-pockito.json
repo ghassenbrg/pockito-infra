@@ -7,6 +7,24 @@
       {"name":"ADMIN","description":"Administrator"}
     ]
   },
+  "users": [
+    {
+      "username": "gbargougui",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Ghassen",
+      "lastName": "Bargougui",
+      "email": "ghassen.brg27@gmail.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "gbargougui",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["USER"]
+    }
+  ],
   "clients": [
     {
       "clientId":"pockito-api",

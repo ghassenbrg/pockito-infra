@@ -43,6 +43,7 @@ This directory contains the Docker Compose configuration for the Pockito applica
    - Realm "pockito" should be created
    - Two roles: `USER` and `ADMIN`
    - Two clients: `pockito-api` and `pockito-web`
+   - Test user `gbargougui` with USER role
 
 ### Client Configuration
 
@@ -57,6 +58,18 @@ This directory contains the Docker Compose configuration for the Pockito applica
 - **Redirect URIs**: http://localhost:4200/*
 - **Web Origins**: http://localhost:4200
 - **Scopes**: profile, roles, email
+
+## Test User
+
+A test user is included in the realm configuration:
+
+- **Username**: `gbargougui`
+- **Password**: `gbargougui`
+- **Name**: Ghassen Bargougui
+- **Email**: ghassen.brg27@gmail.com
+- **Role**: USER
+
+This user can be used for testing the application authentication.
 
 ## Database Access
 
