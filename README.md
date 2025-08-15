@@ -4,14 +4,15 @@ This directory contains the Docker Compose configuration for the Pockito applica
 
 ## Services
 
-- **PostgreSQL 16**: Database server
-- **Keycloak 24.0**: Authentication and authorization server
+- **PostgreSQL 16**: Database server for Pockito application
+- **Keycloak PostgreSQL**: Database server for Keycloak (separate instance)
+- **Keycloak 25.0**: Authentication and authorization server
 
 ## Quick Start
 
 1. **Copy environment variables**:
    ```bash
-   cp .env.example .env
+   cp env.example .env
    ```
 
 2. **Start services**:
@@ -26,24 +27,21 @@ This directory contains the Docker Compose configuration for the Pockito applica
 
 ## Keycloak Setup
 
-### Import Realm Configuration
+### Automatic Realm Import
 
-1. **Access Keycloak Admin Console**:
-   - URL: http://localhost:8081
-   - Username: `admin`
-   - Password: `admin` (or as set in `.env`)
+The realm configuration is automatically imported on first startup:
 
-2. **Import Realm**:
-   - Click "Add realm"
-   - Click "Select file"
-   - Choose `keycloak/realm-pockito.json`
-   - Click "Create"
-
-3. **Verify Configuration**:
-   - Realm "pockito" should be created
-   - Two roles: `USER` and `ADMIN`
+1. **Realm Configuration**: `keycloak/realm-pockito.json` is automatically imported
+2. **Pre-configured Elements**:
+   - Realm "pockito" with USER and ADMIN roles
    - Two clients: `pockito-api` and `pockito-web`
    - Test user `gbargougui` with USER role
+
+### Access Keycloak Admin Console
+
+- **URL**: http://localhost:8081
+- **Username**: `admin`
+- **Password**: `admin` (or as set in `.env`)
 
 ### Client Configuration
 
@@ -73,28 +71,71 @@ This user can be used for testing the application authentication.
 
 ## Database Access
 
+### Pockito Application Database
 - **Host**: localhost
 - **Port**: 5432
 - **Database**: pockito
 - **Username**: pockito
 - **Password**: pockito
 
+### Keycloak Database
+- **Host**: localhost
+- **Port**: 5433 (separate container)
+- **Database**: keycloak
+- **Username**: keycloak
+- **Password**: keycloak
+
+## Data Persistence
+
+Both databases use Docker volumes for data persistence:
+
+- **Pockito Database**: `pgdata` volume
+- **Keycloak Database**: `keycloak_pgdata` volume
+
+Data will persist across container restarts and updates.
+
 ## Health Checks
 
-Both services include health checks:
-- **PostgreSQL**: Uses `pg_isready`
-- **Keycloak**: Uses HTTP endpoint check
+All services include health checks:
+- **PostgreSQL (Pockito)**: Uses `pg_isready`
+- **PostgreSQL (Keycloak)**: Uses `pg_isready`
+- **Keycloak**: Uses HTTP health endpoint
+
+## Environment Variables
+
+Copy `env.example` to `.env` and customize as needed:
+
+```bash
+# PostgreSQL Database (for Pockito app)
+POSTGRES_DB=pockito
+POSTGRES_USER=pockito
+POSTGRES_PASSWORD=pockito
+
+# Keycloak Admin
+KEYCLOAK_ADMIN=admin
+KEYCLOAK_ADMIN_PASSWORD=admin
+
+# Keycloak Database
+KEYCLOAK_DB=keycloak
+KEYCLOAK_DB_USER=keycloak
+KEYCLOAK_DB_PASSWORD=keycloak
+```
 
 ## Troubleshooting
 
 ### Keycloak Not Starting
-- Ensure PostgreSQL is running and healthy
+- Ensure Keycloak PostgreSQL is running and healthy
 - Check logs: `docker-compose logs keycloak`
 
 ### Database Connection Issues
-- Verify PostgreSQL is running: `docker-compose ps`
-- Check logs: `docker-compose logs db`
+- Verify PostgreSQL services are running: `docker-compose ps`
+- Check logs: `docker-compose logs db` or `docker-compose logs keycloak-db`
 
 ### Port Conflicts
-- Ensure ports 5432 and 8081 are available
+- Ensure ports 5432, 5433, and 8081 are available
 - Modify ports in `docker-compose.yml` if needed
+
+### Realm Import Issues
+- Check Keycloak logs for import errors
+- Verify `keycloak/realm-pockito.json` is valid JSON
+- Realm import only happens on first startup with empty database
