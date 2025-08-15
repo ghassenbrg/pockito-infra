@@ -17,7 +17,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0
+    image: quay.io/keycloak/keycloak:25.0.0
     container_name: pockito-keycloak
     command: ["start-dev", "--http-port=8081"]
     environment:

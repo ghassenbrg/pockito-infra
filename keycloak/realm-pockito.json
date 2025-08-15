@@ -1,0 +1,28 @@
+{
+  "realm": "pockito",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {"name":"USER","description":"Application user"},
+      {"name":"ADMIN","description":"Administrator"}
+    ]
+  },
+  "clients": [
+    {
+      "clientId":"pockito-api",
+      "protocol":"openid-connect",
+      "publicClient":false,
+      "serviceAccountsEnabled":true,
+      "redirectUris":["http://localhost:8080/*"],
+      "defaultClientScopes":["profile","roles","email"]
+    },
+    {
+      "clientId":"pockito-web",
+      "protocol":"openid-connect",
+      "publicClient":true,
+      "redirectUris":["http://localhost:4200/*"],
+      "webOrigins":["http://localhost:4200"],
+      "defaultClientScopes":["profile","roles","email"]
+    }
+  ]
+}
