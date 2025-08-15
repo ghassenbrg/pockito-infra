@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:16
     container_name: pockito-postgres
-    ports: ["5432:5432"]
+    ports: ["5434:5432"]
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-pockito}
       POSTGRES_USER: ${POSTGRES_USER:-pockito}
