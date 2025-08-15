@@ -1,6 +1,8 @@
 {
   "realm": "pockito",
   "enabled": true,
+  "displayName": "Pockito",
+  "displayNameHtml": "<div class=\"kc-logo-text\"><span>Pockito</span></div>",
   "roles": {
     "realm": [
       {"name":"USER","description":"Application user"},

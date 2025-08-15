@@ -1,0 +1,291 @@
+:root {
+  --pockito-primary: #3e5ef5;
+  --pockito-accent: #06b6d4;
+  --pockito-bg: #f8fafc;
+  --pockito-text: #0f172a;
+  --pockito-muted: #64748b;
+  --pockito-radius: 16px;
+}
+
+/* Reset and base styles */
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+html, body { 
+  height: 100%; 
+  overflow: hidden;
+}
+
+body { 
+  background: var(--pockito-bg); 
+  color: var(--pockito-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide any default Keycloak elements */
+#kc-header,
+#kc-header-wrapper,
+#kc-form-buttons,
+#kc-form-options,
+#kc-form-wrapper,
+#kc-info-wrapper,
+#kc-social-providers,
+#kc-registration,
+#kc-toolbar,
+#kc-form-error,
+#kc-form-buttons,
+#kc-form-options,
+#kc-form-wrapper,
+#kc-info-wrapper,
+#kc-social-providers,
+#kc-registration,
+#kc-toolbar,
+#kc-form-error {
+  display: none !important;
+}
+
+/* Custom layout */
+.pockito-wrap { 
+  min-height: 100vh; 
+  display: grid; 
+  place-items: center; 
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.pockito-card { 
+  width: 100%; 
+  max-width: 440px; 
+  background: #fff; 
+  border-radius: var(--pockito-radius);
+  box-shadow: 0 12px 40px rgba(2,8,23,.08); 
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.pockito-logo { 
+  display: flex; 
+  align-items: center; 
+  gap: .75rem; 
+  justify-content: center; 
+  margin-bottom: 1rem; 
+}
+
+.pockito-logo img { 
+  width: 40px; 
+  height: 40px; 
+}
+
+.pockito-logo span { 
+  font-weight: 700; 
+  font-size: 1.25rem; 
+}
+
+.pockito-title { 
+  text-align: center; 
+  font-weight: 700; 
+  font-size: 1.5rem; 
+  margin: .25rem 0 1rem; 
+}
+
+.page-description {
+  text-align: center;
+  color: var(--pockito-muted);
+  font-size: .95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.form-group { 
+  margin-bottom: 1rem; 
+}
+
+.label { 
+  display: block; 
+  font-weight: 600; 
+  margin-bottom: .4rem; 
+}
+
+.input { 
+  width: 100%; 
+  padding: .75rem .9rem; 
+  font-size: 1rem; 
+  border: 1px solid #e2e8f0; 
+  border-radius: 12px; 
+  background: #fff; 
+}
+
+.input:focus { 
+  outline: 2px solid rgba(62,94,245,.2); 
+  border-color: var(--pockito-primary); 
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--pockito-muted);
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--pockito-accent);
+}
+
+.eye-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btn { 
+  width: 100%; 
+  padding: .8rem 1rem; 
+  border: 0; 
+  border-radius: 12px; 
+  font-weight: 600; 
+  cursor: pointer; 
+}
+
+.btn-primary { 
+  background: var(--pockito-primary); 
+  color: #fff; 
+}
+
+.btn-primary:hover { 
+  filter: brightness(0.98); 
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--pockito-primary);
+  border: 2px solid var(--pockito-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--pockito-primary);
+  color: #fff;
+}
+
+.links { 
+  display: flex; 
+  justify-content: space-between; 
+  margin-top: .75rem; 
+  font-size: .9rem; 
+}
+
+.app-links {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.app-link {
+  color: var(--pockito-muted);
+  text-decoration: none;
+  font-size: .85rem;
+  transition: color 0.2s ease;
+}
+
+.app-link:hover {
+  color: var(--pockito-accent);
+  text-decoration: underline;
+}
+
+.register-section {
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.register-text {
+  color: var(--pockito-muted);
+  margin-bottom: 1rem;
+  font-size: .9rem;
+}
+
+.login-section {
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.login-text {
+  color: var(--pockito-muted);
+  margin-bottom: 1rem;
+  font-size: .9rem;
+}
+
+.info-section {
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.info-text {
+  color: var(--pockito-muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+a { 
+  color: var(--pockito-accent); 
+  text-decoration: none; 
+}
+
+a:hover { 
+  text-decoration: underline; 
+}
+
+.alert { 
+  padding: .75rem 1rem; 
+  border-radius: 12px; 
+  margin-bottom: 1rem; 
+  font-size: .95rem; 
+  border-left: 4px solid;
+}
+
+.alert.error { 
+  background: #fef2f2; 
+  color: #991b1b; 
+  border-left-color: #dc2626;
+}
+
+.alert.info { 
+  background: #eff6ff; 
+  color: #1e40af; 
+  border-left-color: #3b82f6; 
+}
+
+.alert.success {
+  background: #f0fdf4;
+  color: #166534;
+  border-left-color: #16a34a;
+}
+
+.footer { 
+  text-align: center; 
+  color: var(--pockito-muted); 
+  font-size: .85rem; 
+  margin-top: 1.25rem; 
+}

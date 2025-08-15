@@ -1,0 +1,1 @@
+console.log('Pockito Keycloak login theme loaded');
